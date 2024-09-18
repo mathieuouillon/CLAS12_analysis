@@ -6,7 +6,9 @@ project('project_template', 'cpp',
 subproject('hipo')
 hipo = dependency('hipo4')
 
-exe = executable('project_template', 'src/main.cpp', cpp_args : '-std=c++17', dependencies: hipo)
+inc = include_directories('include')
+
+exe = executable('project_template', 'src/main.cpp',include_directories : inc, cpp_args : '-std=c++17', dependencies: hipo)
 
 cpp_std = get_option('cpp_std')
 

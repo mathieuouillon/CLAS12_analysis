@@ -1,8 +1,12 @@
 #include <iostream>
 
 #include <hipo4/reader.h>
+#include <thread_pool/BS_thread_pool.hpp>
 
 auto main(int argc, char *argv[]) -> int {
+
+   BS::thread_pool pool;
+     
    std::string file = "../data/mydatafile.hipo";
 
    hipo::reader   r(file.c_str());
