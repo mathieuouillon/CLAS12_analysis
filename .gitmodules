@@ -1,3 +1,6 @@
 [submodule "hipo"]
 	path = hipo
 	url = https://github.com/mathieuouillon/hipo
+[submodule "subprojects/hipo"]
+	path = subprojects/hipo
+	url = https://github.com/mathieuouillon/hipo
