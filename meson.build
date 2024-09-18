@@ -3,9 +3,10 @@ project('project_template', 'cpp',
   default_options: ['cpp_std=c++23,c++20,c++17',],
   )
 
-hipo = subproject('hipo')
+subproject('hipo')
+hipo = dependency('hipo4')
 
-exe = executable('project_template', 'src/main.cpp', cpp_args : '-std=c++17')
+exe = executable('project_template', 'src/main.cpp', cpp_args : '-std=c++17', dependencies: hipo)
 
 cpp_std = get_option('cpp_std')
 
