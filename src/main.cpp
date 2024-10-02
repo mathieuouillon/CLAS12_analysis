@@ -1,32 +1,20 @@
 #include <iostream>
 
-#include <TH1D.h>
 #include <TCanvas.h>
+#include <TH1D.h>
+#include <TLine.h>
+#include <TROOT.h>
 
 #include <hipo4/reader.h>
-#include <thread_pool/BS_thread_pool.hpp>
+#include <study1/Reader.hpp>
+#include <thread_pool/multi_thread.hpp>
 
-auto main(int argc, char *argv[]) -> int {
+int main(int argc, char* argv[]) {
+    ROOT::EnableThreadSafety();  // To stop random errors in multithread mode
 
-   auto hist = std::make_unique<TH1D>("hist","", 100, -20, 20);
+    std::vector<std::string> files = {"../data/mydatafile.hipo"};
+    study1::Reader reader;
+    multithread_reader(reader, files, 1);
 
-  BS::thread_pool pool;
-
-  std::string file = "../data/mydatafile.hipo";
-
-  hipo::reader r(file.c_str());
-  hipo::banklist list = r.getBanks({"REC::Particle", "REC::Event"});
-  int counter = 0;
-  while (r.next(list) && counter < 350) {
-    counter++;
-    list[0].show();
-    list[1].show();
-for(int r = 0; r < list[0].getRows(); r++){
-    if(list[0].getInt("charge",r)!=0) hist->Fill(list[0].getFloat("vz",r));
-}
-  }
-
-  TCanvas canvas("", "", 800, 600);
-  hist->Draw();
-  canvas.SaveAs("hist.pdf");
+    return EXIT_SUCCESS;
 }

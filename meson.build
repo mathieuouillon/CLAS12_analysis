@@ -35,6 +35,7 @@ if root_dep.found()
     '-lRIO',
     '-lHist',
     '-lGpad',
+    '-lGraf',
   ]
 endif
 root_dep_inc_dirs = include_directories(
@@ -45,9 +46,15 @@ subdir('hipo4')
 
 inc = include_directories('include')
 
+sources = files(
+  'src/main.cpp',
+  'src/study1/Reader.cpp'
+
+)
+
 executable(
   'project_template',
-  'src/main.cpp',
+  sources,
   include_directories: [inc,root_dep_inc_dirs],
   cpp_args: '-std=c++17',
   dependencies: hipo_dep,
