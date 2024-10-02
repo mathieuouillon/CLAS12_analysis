@@ -3,15 +3,16 @@
 #include <string>
 
 #include <hipo4/reader.h>
+#include <study1/Histograms.hpp>
 
 namespace study1 {
 
 class Reader {
    private:
-    /* data */
+    Histograms &histograms;
    public:
     // ****** constructors and destructor
-    Reader(/* args */);
+    explicit Reader(Histograms &histograms_);
     ~Reader();
 
     // ****** public methods
