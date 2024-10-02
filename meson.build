@@ -7,6 +7,10 @@ project(
   ],
 )
 
+# fmt dependency
+fmt = subproject('fmt')
+fmt_dep = fmt.get_variable('fmt_dep')
+
 # ROOT dependency
 root_dep = dependency(
   'ROOT',
@@ -57,7 +61,7 @@ executable(
   sources,
   include_directories: [inc,root_dep_inc_dirs],
   cpp_args: '-std=c++17',
-  dependencies: hipo_dep,
+  dependencies: [hipo_dep, fmt_dep],
   link_args: root_dep_link_args,
   build_rpath: root_libdir,
 )
