@@ -32,3 +32,15 @@
 *.app
 
 build/
+
+# Build output
+build/
+builddir/
+
+# Editor
+.vscode/
+
+# Data files (never commit)
+data/
+*.hipo
+*.root
